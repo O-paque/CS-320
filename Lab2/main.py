@@ -13,7 +13,7 @@ def extract(list,lo,hi):
     return list[lower:upper+1]
     
     
-def findBoundary(list, boundary):
+def findBoundary(list, boundary):   #Need to account for lo/hi not in list
     middle = math.floor(len(list) / 2)
     
     return 0
