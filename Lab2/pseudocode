@@ -1,0 +1,17 @@
+extract(List, low, high)
+	# May need special cases if low or high are None
+	lower, upper = findBoundary(list, low), findBoundary(list, high)
+	
+	return list[low:high+1]
+
+findBoundary(list, boundary)
+	middle = math.floor(len(list) / 2)
+
+	while List[middle] != boundary
+		if List[middle] > boundary
+			middle = # Calculation
+		elif List[middle] < boundary
+			middle = # Calculation
+
+
+
