@@ -13,5 +13,22 @@ findBoundary(list, boundary)
 		elif List[middle] < boundary
 			middle = # Calculation
 
+# test_list1 = [10, 10, 10, 11, 13, 18, 24, 41, 57, 61, 62, 63, 
+#               80, 90, 94, 96, 99, 99, 99, 99, 99]
+# test_list2 = []
+# test_list3 = None
 
+# print("Test 1: ", extract(test_list1, 18, 94))
+# print("Test 2: ", extract(test_list2, 18, 94))
+# print("Test 3: ", extract(test_list3, 18, 94))
+# print("Test 4: ", extract(test_list2, 94, 18))
+# print("Test 5: ", extract(test_list1, None, 94))
+# print("Test 6: ", extract(test_list1, 24, None))
+# print("Test 7: ", extract(test_list1, None, None))
+# print("Test 8: ", extract(test_list1, 15, 97))
+
+# end_time = time.time()
+# ex_t = end_time - start_time
+# ex_t *= 1000
+# print('Execution time: ', ex_t, " milliseconds")
 
