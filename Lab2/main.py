@@ -10,7 +10,6 @@ def binary_search(list, key, low, high):
     if key > list[len(list) - 1]:
         return high - 1
     
-    print("Middle: ", middle, ", low: ", low, ", high: ", high)
     if key == list[middle]:
         return middle
     elif key < list[middle]:
@@ -43,7 +42,7 @@ def extract(list, lo, hi):
         upper = binary_search(list, hi, 0, len(list))
         while upper < len(list) - 1 and list[upper] == list[upper + 1]:
             upper += 1
-    print(("lower: ", lower, ", upper: ", upper))
+
     if lower < 0:
         return list[0:upper + 1]
     else:
