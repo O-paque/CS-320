@@ -24,13 +24,46 @@ def longest_path(torus):
 
 
 def find_path(torus, rows, cols, i, j):
-    visited = [[0 for i in range(cols)] for j in range(rows)]
     path = [(i,j)]
     visited[i][j] = 1
-    
+    adj_list = build_adj_list(torus, i, j)
     
     
     return 0
+
+
+def build_adj_list(torus, i, j):
+    height = len(torus)
+    length = len(torus[0])
+    adj = []
+    
+    left, right = (j - 1, j + 1)
+    top, bottom = (i - 1, i + 1)
+    
+    # Check if indexes are at boundaries, wrap to opposite side if true
+    # to implement torus structure
+    if left < 0:
+        left = length - 1
+    
+    if right >= length:
+        right = 0
+        
+    if bottom >= height:
+        bottom = 0
+        
+    if top < 0:
+        top = height - 1
+    
+    adj.append((j,left))
+    adj.append((j,right))
+    adj.append((top,i))
+    adj.append((bottom,i))
+    return adj
+        
+        
+
+
+        
 
 # test arrays
 arr1 = [[0,9,8],
@@ -45,6 +78,7 @@ arr2 = [[0,0,0,0],
 print(arr1)
 arr1[1][2] = 9
 print(arr1)
+arr1[1][2] = 1
 
 # test being able to find the rows and columns of an unknown array/matrix
 print(arr2)
@@ -69,3 +103,22 @@ if (0,0) in test1:
     print("We found it!")
 
 longest_path(arr1)
+i, j = (1,0)
+adj1 = build_adj_list(arr1, i, j)
+print()
+longest_path(arr1)
+print(adj1)
+print("Start: ", arr1[i][j])
+
+i, j = adj1[0]
+print("Left: ", arr1[i][j])
+
+i, j = adj1[1]
+print("Right: ", arr1[i][j])
+
+i, j = adj1[2]
+print("Top: ", arr1[i][j])
+
+i, j = adj1[3]
+print("Bottom: ", arr1[i][j])
+
