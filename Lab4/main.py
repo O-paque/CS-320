@@ -1,51 +1,5 @@
 
 
-def longest_path(torus):
-    if torus is None:
-        return []
-    
-    rows = len(torus)
-    cols = len(torus[0])
-    
-    if rows == 0 or cols == 0:
-        return []
-    i, j = (0,0)
-    longest = []
-    
-    while i < rows:
-        while j < cols:
-            path = [(i,j)]
-            # print(torus[i][j], end = " ")
-            # temp = find_path(torus, path, i, j)
-            # if len(temp) > len(longest):
-                # longest = temp
-            j += 1
-        i += 1
-        j = 0
-        # print()
-    
-    return 0
-
-
-def find_path(torus, path, i, j):
-    
-    adj_list = build_adj_list(torus, i, j)
-    
-    longest = []
-    temp = path # Do I need a temp value in this function??? 
-    
-    for i in adj_list:
-        x, y = i
-        if (torus[x][y] > path[len(path) - 1]) and (x,y) not in path:
-            temp.append((x,y))
-            temp = find_path(torus, temp, x, y)
-    
-    
-    
-    
-    return 0
-
-
 def build_adj_list(torus, i, j):
     height = len(torus)
     length = len(torus[0])
@@ -67,15 +21,92 @@ def build_adj_list(torus, i, j):
     if top < 0:
         top = height - 1
     
-    adj.append((i,left))
-    adj.append((i,right))
-    adj.append((top,j))
-    adj.append((bottom,j))
+    adj.append((i, left))
+    adj.append((i, right))
+    adj.append((top, j))
+    adj.append((bottom, j))
     return adj
-        
-        
 
 
+def find_path(torus, path, i, j):
+    
+    adj_list = build_adj_list(torus, i, j)
+    print("adj_list in find_path: ", adj_list)
+    
+    longest = []
+    # temp = path  # Do I need a temp value in this function??? 
+    temp = []
+    temp.append(path)    
+    for i in adj_list:
+
+        print("I in find_path: ", i)
+        adj_x, adj_y = i
+        path_x, path_y = path[len(path) - 1]
+        adjacent = torus[adj_x][adj_y]
+        compare = torus[path_x][path_y]
+        
+        if (adjacent > compare) and (adj_x, adj_y) not in path:
+            temp.append((adj_x, adj_y))
+            find_path(torus, temp, adj_x, adj_y)
+            
+        if len(temp) > len(longest):
+            longest = temp
+    # path = longest
+    return longest
+
+
+def longest_path(torus):
+    if torus is None:
+        return []
+    
+    rows = len(torus)
+    cols = len(torus[0])
+    
+    if rows == 0 or cols == 0:
+        return []
+    i, j = (0, 0)
+    longest = []
+    
+    while i < rows:
+        while j < cols:
+            path = [(i, j)]
+            # print(torus[i][j], end = " ")
+            temp = find_path(torus, path, i, j)
+            if len(temp) > len(longest):
+                longest = temp
+            j += 1
+        i += 1
+        j = 0
+        # print()
+    
+    return longest
+
+
+# def find_path_2(torus, path, i, j):
+    
+#     adj_list = build_adj_list(torus, i, j)
+#     print("adj_list in find_path: ", adj_list)
+    
+#     smallest = adj_list[0]
+    
+#     for i in adj_list:
+#          adj_x, adj_y = i
+#          path_x, path_y = smallest
+#          temp = torus[adj_x][adj_y]
+#          compare = torus[path_x][path_y]
+#          print("Temp: ", temp,", compare: ", compare)
+#          if (temp < compare) and i not in path:
+#              smallest = (adj_x, adj_y)
+             
+#     print("Smallest: ", smallest)
+        
+#     if smallest not in path:
+#         path.append(smallest)
+#         adj_x, adj_y = smallest
+#         find_path_2(torus, path, adj_x, adj_y)
+
+        
+#     return path
         
 
 print("test arrays")
@@ -146,3 +177,13 @@ for i in adj1:
     print("i: ", i)
     x, y = i
     print("x: ", x, ", y: ", y)
+    
+print("test find_path works properly")
+path1 = [(1,1)]
+path1 = find_path(arr1, path1, 1, 1)
+print(path1)
+
+# print("test find_path_2 works properly")
+# path1 = [(0,0)]
+# path1 = find_path_2(arr1, path1, 0, 0)
+# print(path1)
