@@ -1,7 +1,8 @@
-import random # optional and you can delete this line if not useful
+import random
 
-# subroutines if any, go here
 
-# fill in repeat
 def placement(numobjects, map):
+    if map is None or numobjects <= 0:
+        return None
+    
     return 0
