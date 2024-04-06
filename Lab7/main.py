@@ -3,7 +3,9 @@ import sys
 
 
 def bellman_ford(graph: GraphEL, start: VertexEL, end: VertexEL) -> list:
-    if graph is None or start is None or end is None:
+    if not isinstance(graph, GraphEL):
+        return []
+    if not isinstance(start, VertexEL) or not isinstance(end, VertexEL):
         return []
     if start not in graph.vertices() or end not in graph.vertices():
         return []
