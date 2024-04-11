@@ -4,7 +4,7 @@ def ga_tsp(initial_population, distances, generations):
     if not valid_inputs(initial_population, distances, generations):
         return None
 
-    return 0
+    return (0,0)
     
 
 def valid_inputs(initial_population, distances, generations):
