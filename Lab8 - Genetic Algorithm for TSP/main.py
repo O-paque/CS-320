@@ -67,11 +67,5 @@ def next_gen(current, children):
                 children.remove(f)
     
     return 0
-    
-    
 
-            
-    
-    
-    
 # python3 tsp.py DIST6-simple
