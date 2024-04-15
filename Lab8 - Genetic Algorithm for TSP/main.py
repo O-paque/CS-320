@@ -23,9 +23,7 @@ def ga_tsp(initial_population, distances, generations):
                 
             child_list.append(crossover(parent_A, parent_B))
         
-        # print("Child list in gen #", i, ": ", child_list)
         current_population = new_gen(current_population, child_list, distances)
-        # print("Population list for gen #", i+1, ": ", current_population)
         
     return current_population[0]
     
@@ -68,6 +66,8 @@ def new_gen(current, children, distances):
             if i == j:
                 children.remove(j)
                 
+    # Combine all paths, and sort them by best cost. Return best costs
+    # to overwrite old generation            
     all = current + children
     all = sorted(all, key=partial(cost, distances=distances))
     
